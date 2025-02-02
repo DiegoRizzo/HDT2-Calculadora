@@ -5,42 +5,42 @@ import java.util.*;
 
 // Interfaz para la Pila Genérica
 interface StackADT<T> {
-    void push(T item);
-    T pop();
-    T peek();
-    boolean isEmpty();
-    int size();
+    void push(T item); // agregar un elemento
+    T pop(); // sacar el elemento superior 
+    T peek(); // ver elemento superior sin sacarlo 
+    boolean isEmpty(); // ver si la pila está vacía
+    int size(); // tener tamaño de pila 
 }
 
 // Implementación con Vector
 class VectorStack<T> implements StackADT<T> {
-    private Vector<T> stack;
+    private Vector<T> stack;    
 
     public VectorStack() {
-        stack = new Vector<>();
-    }
+        stack = new Vector<>(); // vector para almacenar datos 
+    }  
 
     public void push(T item) {
-        stack.add(item);
+        stack.add(item); // al final agrega elemento 
     }
 
     public T pop() {
         if (isEmpty()) throw new IllegalStateException("La pila está vacía.");
-        return stack.remove(stack.size() - 1);
-    }
+        return stack.remove(stack.size() - 1); // elimina y devuelve último elemento 
+    } 
 
     public T peek() {
         if (isEmpty()) throw new IllegalStateException("La pila está vacía.");
-        return stack.lastElement();
-    }
+        return stack.lastElement(); // devúelve último elemento sin eliminarlo 
+    } 
 
     public boolean isEmpty() {
         return stack.isEmpty();
-    }
+    } // verifica si está vacía 
 
     public int size() {
         return stack.size();
-    }
+    } // retorna el tamaño 
 }
 
 // Implementación con ArrayList
@@ -113,11 +113,11 @@ class PostfixCalculator implements PostfixCalculatorADT {
                     case "%": result = operandA % operandB; break;
                     default: throw new IllegalArgumentException("Operador no válido: " + token);
                 }
-                stack.push(result);
+                stack.push(result); // guardamos resultado en la pila
             }
         }
         if (stack.size() != 1) throw new IllegalArgumentException("Expresión inválida: operandos sobrantes.");
-        return stack.pop();
+        return stack.pop(); // devolvemos resultado final 
     }
 }
 
